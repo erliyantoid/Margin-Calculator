@@ -1,15 +1,15 @@
 function hitung() {
-  const hpp = parseFloat(document.getElementById("hpp").value);
-  const marginInput = document.getElementById("margin").value;
-  const diskonInput = document.getElementById("diskon").value;
+  const hpp = Number(document.getElementById("hpp").value);
+  const marginRaw = Number(document.getElementById("margin").value);
+  const diskonRaw = Number(document.getElementById("diskon").value);
 
-  if (isNaN(hpp) || isNaN(marginInput)) {
-    alert("HPP dan Margin wajib diisi!");
+  if (!hpp || !marginRaw) {
+    alert("HPP dan Margin wajib diisi dengan angka!");
     return;
   }
 
-  const margin = parseFloat(marginInput) / 100;
-  const diskon = diskonInput === "" ? 0 : parseFloat(diskonInput) / 100;
+  const margin = marginRaw / 100;
+  const diskon = isNaN(diskonRaw) ? 0 : diskonRaw / 100;
 
   if (margin + diskon >= 1) {
     alert("Margin + Diskon tidak boleh 100% atau lebih!");
@@ -24,8 +24,9 @@ function hitung() {
   const statusClass = untung > 0 ? "aman" : "rugi";
   const statusText = untung > 0 ? "🟢 AMAN" : "🔴 RUGI";
 
-  document.getElementById("hasil").className = `hasil ${statusClass}`;
-  document.getElementById("hasil").innerHTML = `
+  const hasil = document.getElementById("hasil");
+  hasil.className = `hasil ${statusClass}`;
+  hasil.innerHTML = `
     <p><b>Status:</b> ${statusText}</p>
     <p>Harga Jual Aman: <b>Rp ${hargaJual.toLocaleString("id-ID")}</b></p>
     <p>Harga Setelah Diskon: Rp ${hargaSetelahDiskon.toLocaleString("id-ID")}</p>
