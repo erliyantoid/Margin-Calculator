@@ -48,6 +48,12 @@ button:hover {
   background: #0056b3;
 }
 
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
 .hasil {
   margin-top: 20px;
   padding: 15px;
