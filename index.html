@@ -19,6 +19,12 @@
   <label>Diskon Maksimal (%)</label>
   <input type="number" id="diskon" placeholder="boleh kosong">
 
+  <label>Metode Perhitungan</label>
+<select id="mode">
+  <option value="markup">Markup (HPP + %)</option>
+  <option value="margin">Margin Aman (Profesional)</option>
+</select>
+
   <button onclick="hitung()">Hitung Margin</button>
 
   <div id="hasil" class="hasil"></div>
