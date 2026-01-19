@@ -14,22 +14,28 @@
   <input type="number" id="hpp" placeholder="contoh: 10000">
 
   <label>Target Margin (%)</label>
-  <input type="number" id="margin" placeholder="contoh: 20">
+  <input type="number" id="margin" placeholder="dipakai di mode %">
 
   <label>Diskon Maksimal (%)</label>
   <input type="number" id="diskon" placeholder="boleh kosong">
 
   <label>Metode Perhitungan</label>
-<select id="mode">
-  <option value="markup">Markup (HPP + %)</option>
-  <option value="margin">Margin Aman (Profesional)</option>
-</select>
+  <select id="mode" onchange="toggleTargetHarga()">
+    <option value="markup">Markup (HPP + %)</option>
+    <option value="margin">Margin Aman (%)</option>
+    <option value="target">Target Harga (Rp)</option>
+  </select>
 
-  <button onclick="hitung()">Hitung Margin</button>
+  <div id="targetHargaBox" style="display:none;">
+    <label>Target Harga Jual (Rp)</label>
+    <input type="number" id="targetHarga" placeholder="contoh: 15000">
+  </div>
+
+  <button onclick="hitung()">Hitung</button>
 
   <div id="hasil" class="hasil"></div>
 </div>
 
-</body>
 <script src="script.js"></script>
+</body>
 </html>
