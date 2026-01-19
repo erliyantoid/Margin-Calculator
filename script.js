@@ -19,9 +19,6 @@ function hitung() {
   const diskon = isNaN(diskonRaw) ? 0 : diskonRaw / 100;
 
   let hargaJual = 0;
-  let hargaSetelahDiskon = 0;
-  let untung = 0;
-  let realMargin = 0;
 
   // MODE 1: MARKUP %
   if (mode === "markup") {
@@ -55,9 +52,12 @@ function hitung() {
     hargaJual = targetHarga;
   }
 
-  hargaSetelahDiskon = hargaJual * (1 - diskon);
-  untung = hargaSetelahDiskon - hpp;
-  realMargin = (untung / hpp) * 100;
+  const hargaSetelahDiskon = hargaJual * (1 - diskon);
+  const untung = hargaSetelahDiskon - hpp;
+
+  // 2 JENIS MARGIN
+  const roiModal = (untung / hpp) * 100;          // vs modal
+  const profitMargin = (untung / hargaJual) * 100; // vs harga jual
 
   const statusClass = untung > 0 ? "aman" : "rugi";
   const statusText = untung > 0 ? "🟢 AMAN" : "🔴 RUGI";
@@ -67,9 +67,12 @@ function hitung() {
   hasil.innerHTML = `
     <p><b>Mode:</b> ${mode.toUpperCase()}</p>
     <p><b>Status:</b> ${statusText}</p>
+    <hr>
     <p>Harga Jual: <b>Rp ${hargaJual.toLocaleString("id-ID")}</b></p>
     <p>Harga Setelah Diskon: Rp ${hargaSetelahDiskon.toLocaleString("id-ID")}</p>
     <p>Untung Bersih: <b>Rp ${untung.toLocaleString("id-ID")}</b></p>
-    <p>Real Margin: <b>${realMargin.toFixed(2)}%</b></p>
+    <hr>
+    <p>ROI / Markup (vs Modal): <b>${roiModal.toFixed(2)}%</b></p>
+    <p>Profit Margin (vs Harga Jual): <b>${profitMargin.toFixed(2)}%</b></p>
   `;
 }
